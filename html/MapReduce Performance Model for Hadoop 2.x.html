@@ -1,0 +1,803 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left: 0.25em solid rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
+
+
+
+:root {
+  /* == 字体设置 == */
+  /* 基准字体 */
+  /* 备选：Times, "Times New Roman" */
+  --base-Latin-font: "Latin Modern Roman", "Latin Modern Roman 10", Times;
+  --base-Chinese-font: "霞鹜文楷", "宋体-简", "华文宋体", "Noto Serif CJK SC";
+  --base-font-size: 12pt;
+  /* 引言字体 */
+  --quote-font: "Latin Modern Roman", "Latin Modern Roman 10", Times,
+    "Times New Roman", "华文仿宋";
+  /* em单位为一个正文字符（--base-font-size）大小，
+  例如，如果您设置 --base-font-size 为 9.5pt，那么 1.05em = 1.05*9.5pt ≈ 10pt。下面的标题字体等设置也遵循该规则。
+  这样，您就可以仅通过调整基准字体大小，而动态对其他元素大小做出调整。
+  当然，您也可以直接设置以pt或px为单位的数值，将元素的大小固定下来，如 --quote-font-size: 10pt; */
+  --quote-font-size: 1.05em;
+  /* 代码字体（代码中的中文会调用 ui-font） */
+  /* "Courier New" 从 Windows 3.1 起成为 Windows 官方提供的字体 */
+  /* "Consolas" 从 Windows Vista 起成为 Windows 官方提供的字体 */
+  --code-font: "Consolas", "Courier New";
+  /* 侧边栏字体 */
+  --ui-font: "霞鹜文楷", "Latin Modern Roman", "阿里巴巴普惠体 2.0", "微软雅黑";
+  /* source mode 字体 */
+  /* 默认调用 code-font 和 ui-font */
+  --sourceMode-font: "Consolas", "阿里巴巴普惠体 2.0", "微软雅黑";
+  /* 目录字体 */
+  /* 默认调用 base-font */
+  --toc-font: "";
+  /* 默认调用 base-font-size */
+  --toc-font-size: "";
+  /* 公式字体 */
+  --math-font-size: 1em;
+  /* 表格字体 */
+  /* 默认调用 heading-font */
+  --table-title-font: "";
+  /* 默认调用 base-font */
+  --table-font: "";
+  /* 标题字体（总设置） */
+  --heading-Latin-font: var(--base-Latin-font);
+  --heading-Chinese-font: "霞鹜文楷";
+  /* 标题字体分别设置 */
+  /* 大标题（h1）字体 */
+  --title-Chinese-font: "霞鹜文楷";
+  --title-font-size: 1.9em;
+  /* h2字体 */
+  --h2-Chinese-font: "霞鹜文楷";
+  --h2-font-size: 1.5em;
+  /* h3字体 */
+  --h3-Chinese-font: "霞鹜文楷";
+  --h3-font-size: 1.25em;
+  /* h4字体 */
+  --h4-Chinese-font: "霞鹜文楷";
+  --h4-font-size: 1.15em;
+  /* h5字体 */
+  --h5-Chinese-font: "霞鹜文楷";
+  --h5-font-size: 1.10em;
+  /* h6字体 */
+  --h6-Chinese-font: "霞鹜文楷";
+  --h6-font-size: 1.05em;
+  /* 粗体样式设置 */
+  /* 加粗风格时使用的字重；400等同于 normal，700等同于 bold，900等同于 heavy */
+  --strong-weight: 900;
+  /* 基础行距 */
+  --base-line-height: 1.618em;
+  /* == 页面设置 == */
+  /* 打印页边距 */
+  --set-margin: 1.8cm 2cm 1.2cm 2cm !important;
+  /* == 控制设置 == */
+  /* 目录中是否显示一级标题 */
+  --toc-show-title: none;
+  /* == 颜色设置 == */
+  /* 超链接颜色 */
+  --link-color-light: #2E67D3;
+  --link-color-dark: #8bb1f9;
+}
+
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+  /* counter-reset: tableHead 0 imgHead 0; */
+}
+
+@media print {
+  #write {
+    padding: 0 !important;
+  }
+
+  @page {
+    margin: 1.8cm 2cm 1.2cm 2cm !important;
+    /* 页边距 */
+  }
+}
+
+#write {
+  font-family: var(--base-Latin-font), var(--base-Chinese-font), serif;
+  font-size: var(--base-font-size);
+  /* A4标准宽度 */
+  max-width: 30cm;
+  background-color: white;
+  /* column-count: 2;
+    column-gap: 25px;
+    column-width: 8cm; 
+    display: inline-block; */
+  /* 这里可以试分栏的，但确实不适合实现 */
+}
+#write .md-math-block,
+#write .md-rawblock,
+#write p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+#write p {
+  text-align: left;
+  line-height: var(--base-line-height);
+}
+#write a {
+  color: var(--link-color-light);
+}
+
+hr {
+  border-top: solid 1px #ddd;
+  margin-top: 1.8em;
+  margin-bottom: 1.8em;
+}
+
+img {
+  /* 避免图片在导出时被断开 */
+  page-break-inside: avoid;
+}
+
+strong {
+  font-weight: var(--strong-weight);
+}
+
+@media screen {
+  #write {
+    padding: var(--set-margin);
+    /* 添加一个淡蓝色的边框 */
+    /* border: 0.8px solid #AAC ; */
+    /* 页边阴影 */
+    box-shadow: 0 0 24px 12px #cccccc;
+  }
+}
+.MathJax {
+  font-size: var(--math-font-size);
+}
+
+/* typora 编写模式 */
+#typora-source {
+  font-family: var(--sourceMode-font), var(--code-font), var(--ui-font), monospace;
+  line-height: 2em;
+}
+
+/* 侧边大纲标题 */
+.sidebar-content .outline-h1 {
+  counter-reset: outline-h2;
+}
+.sidebar-content .outline-h2 {
+  counter-reset: outline-h3;
+}
+.sidebar-content .outline-h2 .outline-label:before {
+  counter-increment: outline-h2;
+  content: counter(outline-h2) " ";
+}
+.sidebar-content .outline-h3 {
+  counter-reset: outline-h4;
+}
+.sidebar-content .outline-h3 .outline-label:before {
+  counter-increment: outline-h3;
+  content: counter(outline-h2) "." counter(outline-h3) "  ";
+}
+.sidebar-content .outline-h4 {
+  counter-reset: outline-h5;
+}
+.sidebar-content .outline-h4 .outline-label:before {
+  counter-increment: outline-h4;
+  content: counter(outline-h2) "." counter(outline-h3) "." counter(outline-h4) "  ";
+}
+.sidebar-content .outline-h5 {
+  counter-reset: outline-h6;
+}
+.sidebar-content .outline-h5 .outline-label:before {
+  counter-increment: outline-h5;
+  content: counter(outline-h2) "." counter(outline-h3) "." counter(outline-h4) "." counter(outline-h5) "  ";
+}
+
+.sidebar-content {
+  /* 侧边栏的字体修改 */
+  font-family: var(--ui-font);
+  list-style: none;
+}
+
+/* 元数据（如 YAML front matter）的背景框 */
+pre.md-meta-block {
+  background: #cccccc;
+  padding: 1.4em;
+  font-family: var(--code-font), var(--ui-font), monospace;
+  font-size: 0.8em;
+}
+
+#write > h3.md-focus:before,
+#write > h4.md-focus:before,
+#write > h5.md-focus:before,
+#write > h6.md-focus:before,
+h3.md-focus:before,
+h4.md-focus:before,
+h5.md-focus:before,
+h6.md-focus:before {
+  color: inherit;
+  border: inherit;
+  border-radius: inherit;
+  position: inherit;
+  left: initial;
+  float: none;
+  top: initial;
+  font-size: inherit;
+  padding-left: inherit;
+  padding-right: inherit;
+  vertical-align: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+#write {
+  counter-reset: h2 0 h3 0 h4 0 h5 0 h6 0;
+}
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  font-weight: bold;
+  page-break-after: avoid !important;
+}
+#write h1 {
+  font-family: var(--heading-Latin-font), var(--title-Chinese-font), serif;
+  text-align: center;
+  column-span: all;
+  font-size: var(--title-font-size);
+}
+#write h2 {
+  font-family: var(--heading-Latin-font), var(--h2-Chinese-font), serif;
+  font-size: var(--h2-font-size);
+}
+#write h3 {
+  font-family: var(--heading-Latin-font), var(--h3-Chinese-font), serif;
+  font-size: var(--h3-font-size);
+  line-height: var(--h3-font-size);
+}
+#write h4 {
+  font-family: var(--heading-Latin-font), var(--h4-Chinese-font), serif;
+  font-size: var(--h4-font-size);
+  line-height: var(--h4-font-size);
+}
+#write h5 {
+  font-family: var(--heading-Latin-font), var(--h5-Chinese-font), serif;
+  font-size: var(--h5-font-size);
+  line-height: var(--h5-font-size);
+}
+#write h6 {
+  font-family: var(--heading-Latin-font), var(--h6-Chinese-font), serif;
+  font-size: var(--h6-font-size);
+  /* 没有写错，为了避免行距太小才这么写 */
+  line-height: var(--h5-font-size);
+}
+#write h1 {
+  counter-reset: h2;
+}
+#write h2 {
+  counter-reset: h3;
+}
+#write h3 {
+  counter-reset: h4;
+}
+#write h4 {
+  counter-reset: h5;
+}
+#write h5 {
+  counter-reset: h6;
+}
+
+#write h2:before {
+  counter-increment: h2;
+  content: counter(h2);
+  margin-right: 1.2em;
+}
+
+#write h3:before, h3.md-focus.md-heading:before {
+  counter-increment: h3;
+  content: counter(h2) "." counter(h3);
+  margin-right: 1.2em;
+}
+
+#write h4:before, h4.md-focus.md-heading:before {
+  counter-increment: h4;
+  content: counter(h2) "." counter(h3) "." counter(h4);
+  margin-right: 1.2em;
+}
+
+#write h5:before, h5.md-focus.md-heading:before {
+  counter-increment: h5;
+  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5);
+  margin-right: 1.2em;
+}
+
+#write h6:before, h6.md-focus.md-heading:before {
+  counter-increment: h6;
+  content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6);
+  margin-right: 1.2em;
+}
+
+/* 参考文献（脚注）块 */
+.footnotes {
+  font-size: 0.95em;
+}
+
+.footnotes-area .footnote-line {
+  color: var(--text-color);
+}
+.footnotes-area hr {
+  border: 0;
+  color: #00000000;
+}
+
+/* 无序列表 */
+ul {
+  list-style: disc;
+}
+ul ul {
+  /*list-style: circle;*/
+  /* 请勿删除“–”后的空格, 他们对缩进有一定影响, 下同 */
+  list-style: "–   ";
+}
+ul ul ul {
+  list-style: "◦  ";
+}
+
+/* 有序列表 */
+ol {
+  list-style: decimal;
+}
+ol ol {
+  counter-reset: liist;
+  list-style: none;
+}
+ol ol li {
+  counter-increment: liist;
+  position: relative;
+}
+ol ol li::before {
+  content: "(" counter(liist,lower-alpha) ")";
+  position: absolute;
+  left: -1.8em;
+}
+ol ol ol {
+  counter-reset: liiist;
+  list-style: none;
+  margin: 0;
+}
+ol ol ol li {
+  counter-increment: liiist;
+  position: relative;
+}
+ol ol ol li::before {
+  content: counter(liiist,lower-roman) ".";
+  align-self: flex-end;
+  position: absolute;
+  left: -4.5em;
+  /* -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;*/
+  /* 为了让项目编号是重新用句点对齐而不是左对齐 */
+  width: 4em;
+  text-align: right;
+}
+
+li {
+  position: relative;
+}
+
+ol, ul {
+  padding-inline-start: 2em;
+}
+
+/* task列表 */
+.md-task-list-item > input {
+  margin-top: 0.42em;
+  margin-left: -1.5em;
+  width: 1em !important;
+  height: 1em !important;
+}
+
+#write table {
+  /* 三线表第一条线宽度 */
+  border-top: 1.2pt solid;
+  /* 三线表第二条线宽度 */
+  border-bottom: 1.2pt solid;
+  font-family: var(--table-font), var(--base-Latin-font), var(--base-Chinese-font), serif;
+  /* font-size: var(--base-font-size); */
+  text-align: center;
+  page-break-inside: avoid;
+  border-spacing: 6px;
+  /* 自动布局表格宽度，如果有时内容太紧建议直接加空格吧，我自己看不惯和页面等宽的大表格 */
+  width: auto;
+  /* 使表格默认居中；虽然这个代码不好，但好像没别的实现办法 */
+  margin: 0 auto;
+}
+#write table td {
+  padding: 2px;
+}
+#write table tr {
+  padding: 2px;
+}
+#write th {
+  padding: 0px 6px;
+}
+#write thead {
+  /* 表格标题（首行）样式 */
+  /* 三线表表头的线 */
+  border-bottom: 0.5pt solid;
+  font-family: var(--table-title-font), var(--heading-Latin-font), var(--heading-Chinese-font), serif !important;
+  /* font-size: var(--base-font-size); */
+  font-weight: var(--strong-weight);
+}
+
+/* 一个>的引言仅为两字符缩进，使用>>的引言为传统引言样式，具有左竖线、左缩进 */
+blockquote {
+  font-style: normal;
+  font-family: var(--quote-font), var(--base-Latin-font), var(--base-Chinese-font), -apple-system, serif;
+  font-size: var(--quote-font-size);
+  /* 文字离左边框的距离 */
+  padding-left: 2em;
+  padding-right: 2em;
+  /* 左边框离页面边的距离 */
+  margin-left: 0;
+}
+
+blockquote p:first-child {
+  padding-top: 1ch;
+}
+
+blockquote p:last-child {
+  padding-bottom: 1ch;
+}
+
+blockquote blockquote {
+  border-left: 4px solid #b3b3b3;
+  padding-left: calc(2ch - 4px);
+  padding-right: 0;
+  margin-left: -4px;
+  border-radius: 0;
+}
+
+/* 行内代码 */
+code {
+  font-family: var(--code-font), var(--ui-font), monospace;
+}
+
+h1 code, h2 code, h3 code, h4 code, h5 code, h6 code,
+p code,
+li code {
+  color: #3c70c6;
+  background-color: #fefefe;
+  /* 阴影 */
+  box-shadow: 0 0 1px 1px #c8d3df;
+  font-family: var(--code-font), var(--ui-font), monospace;
+  box-sizing: border-box;
+  border-right: 0px;
+  margin: 0 2px 0 2px;
+  padding: 0 2px 0 2px;
+  /* 圆角 */
+  border-radius: 2px 2px 2px 2px;
+}
+
+/* 代码块样式 */
+.md-fences,
+.CodeMirror pre {
+  font-size: 1em;
+}
+
+.CodeMirror-wrap {
+  /* padding: 10px; */
+  font-size: 1em;
+}
+
+.CodeMirror-code pre {
+  font-family: var(--code-font), var(--ui-font), monospace;
+}
+
+/* 目录 */
+.md-toc {
+  font-size: var(--toc-font-size);
+}
+
+.md-toc-content {
+  margin-left: 2em;
+  /* 修复缺失上级标题时无法递增 */
+  counter-reset: toc-h2 toc-h3 toc-h4;
+  page-break-after: always;
+}
+
+.md-toc-inner {
+  margin-left: 0 !important;
+  color: var(--text-color) !important;
+}
+
+.md-toc-item {
+  color: var(--text-color) !important;
+}
+
+/* 目录标题内容属性 */
+.md-toc-h2,
+.md-toc-h3,
+.md-toc-h4,
+.md-toc-h5,
+.md-toc-h6 {
+  font-size: var(--toc-font-size);
+  font-family: var(--toc-font), var(--base-Latin-font), var(--base-Chinese-font), serif;
+}
+
+.md-toc-h2 {
+  font-weight: var(--strong-weight);
+}
+
+/* 目录标题前 */
+.md-toc-content .md-toc-h1 {
+  display: var(--toc-show-title);
+  counter-reset: toc-h2;
+}
+.md-toc-content .md-toc-h2 {
+  counter-reset: toc-h3;
+}
+.md-toc-content .md-toc-h3 {
+  counter-reset: toc-h4;
+}
+.md-toc-content .md-toc-h4 {
+  counter-reset: toc-h5;
+}
+.md-toc-content .md-toc-h5 {
+  counter-reset: toc-h6;
+}
+.md-toc-content .md-toc-h2:before {
+  counter-increment: toc-h2;
+  content: counter(toc-h2);
+  margin-right: 1em;
+  font-weight: var(--strong-weight);
+}
+.md-toc-content .md-toc-h3:before {
+  counter-increment: toc-h3;
+  content: counter(toc-h2) "." counter(toc-h3);
+  margin-left: 1.5em;
+  margin-right: 0.5em;
+}
+.md-toc-content .md-toc-h4:before {
+  counter-increment: toc-h4;
+  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4);
+  margin-left: 3.5em;
+  margin-right: 0.5em;
+}
+.md-toc-content .md-toc-h5:before {
+  counter-increment: toc-h5;
+  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) "." counter(toc-h5);
+  margin-left: 5.5em;
+  margin-right: 0.5em;
+}
+.md-toc-content .md-toc-h6:before {
+  counter-increment: toc-h6;
+  content: counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) "." counter(toc-h5) "." counter(toc-h6);
+  margin-left: 7.5em;
+  margin-right: 0.5em;
+}
+
+
+
+</style><title>MapReduce Performance Model for Hadoop 2.x</title>
+</head>
+<body class='typora-export os-windows typora-export-show-outline typora-export-collapse-outline'><div class='typora-export-content'>
+<div class="typora-export-sidebar"><div class="outline-content"><li class="outline-item-wrapper outline-h1 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#适用于-hadoop-2x-的-mapreduce-性能模型">适用于 Hadoop 2.x 的 MapReduce 性能模型</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h2 outline-item-open"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#摘要">摘要</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#创新内容">创新内容</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#论文成果">论文成果</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#结论">结论</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#相关工作">相关工作</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#静态-mapreduce-性能模型">静态 MapReduce 性能模型</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#动态-mapreduce-性能模型">动态 MapReduce 性能模型</a></div><ul class="outline-children"></ul></li></ul></li><li class="outline-item-wrapper outline-h2"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#实验">实验</a></div><ul class="outline-children"><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#实验设置">实验设置</a></div><ul class="outline-children"></ul></li><li class="outline-item-wrapper outline-h3 outline-item-single"><div class="outline-item"><span class="outline-expander"></span><a class="outline-label" href="#实验结果">实验结果</a></div><ul class="outline-children"></ul></li></ul></li></ul></li></div></div><div id='write'  class=' first-line-indent'><h1 id='适用于-hadoop-2x-的-mapreduce-性能模型'><span>适用于 Hadoop 2.x 的 MapReduce 性能模型</span></h1><h2 id='摘要'><span>摘要</span></h2><h3 id='创新内容'><span>创新内容</span></h3><p><span>提出了基于 Hadoop 1.x 的现有性能模型的解决方案，但是考虑了架构更改，并使用排队网络模型捕获 MapReduce 作业的执行流程。</span></p><h3 id='论文成果'><span>论文成果</span></h3><p><span>通过将我们的模型估计与实际 Hadoop 2.x 设置中的测量值进行比较，验证了我们解决方案的准确性。</span></p><h2 id='结论'><span>结论</span></h2><p><span>我们检查了 map 和 reduce 任务持续时间的分布类型，并得出结论：任务持续时间具有高斯分布。基于这个结论，我们提出了第三种估计工作响应时间的方法，它比基于 Tripathi 的方法给我们更好的结果。</span></p><p><span>我们的实验显示了我们方法的有效性：标准区块大小的作业响应时间估计的平均误差在 11% 到 13.5% 的范围内。</span></p><h2 id='相关工作'><span>相关工作</span></h2><h3 id='静态-mapreduce-性能模型'><span>静态 MapReduce 性能模型</span></h3><p><span>为了估计 Hadoop 1.x 中 MapReduce 作业的执行情况，在对任务阶段进行建模方面付出了巨大的努力并取得了重要的成果。Herodotou 提出了性能成本模型，用于描述 Hadoop 1.x 中 MapReduce 作业的执行。在他的论文中，性能模型在 map 和 reduce 任务中更精细的阶段粒度上描述了数据流和成本信息。它捕获 Map 任务的以下阶段：read、map、collect、spill 和 merge。对于 Reduce 任务，shuffle 阶段、merge 阶段和 reduce 和 write 阶段有独立的公式。就 Herodotou 的模型而言，总体任务执行时间只是所有 map 和 reduce 阶段的成本之和。正如我们在这些成本公式中看到的那样，每个 Map 和 Reduce 任务都有固定数量的槽，因为在 Hadoop 的第一个版本中，Map 和 Reduce 作业的资源数量是预先确定的，不会改变。YARN 完全脱离了 maps 和 reduce 的资源静态分区，没有静态的 slot 配置。因此，我们不能直接应用 Herodotou 的成本公式，有必要寻找其他方法。</span></p><p><span>此外，也有一些工作定义作业完成时间的下限和上限，并为作业提供资源分配，以便它在要求的截止日期内完成。</span></p><p><span>也有人尝试评估任务调度对系统性能的影响。但是，当前的调度程序既不打包任务，也不考虑所有相关的资源需求。这会导致资源碎片化和过度分配，因此，它会显着降低整体性能。Robert Grandl 等人提出了 Tetris，这是一个多资源集群调度器，它根据所有资源类型的需求将任务打包到节点，从而避免了现有调度器的主要限制。打包的目标是最大限度地提高任务吞吐量并加快作业完成速度。因此，Tetris 结合了两种启发式方法——最佳打包和最短剩余作业时间——以减少平均作业完成时间。作者证明，实现所需的公平性可以与提高集群性能共存。该调度程序是在 YARN 中实现的，并且显示最大完成时间和作业完成时间增加了 30% 以上。基于新的调度器，作者提出了一个具有几个缺点的性能模型。首先，快速求解器只在少数具有非线性约束的特殊情况下为人所知，然而在这里有多个约束是非线性的：资源延展性、任务放置以及任务持续时间与多台机器分配的资源的关系。找到最佳分配的计算代价很高。调度理论表明，即使消除了放置考虑因素，多维装箱问题也是 APX 难的。其次，在 MapReduce 作业中，忽略任务之间的依赖关系是不可接受的，比如 shuffle/sort 阶段可以在第一个 map 任务完成时开始。</span></p><h3 id='动态-mapreduce-性能模型'><span>动态 MapReduce 性能模型</span></h3><p><span>为 MapReduce 作业开发成本模型的主要挑战是，它们必须以合理的准确性捕获作业可能遇到的各种延迟来源。具体而言，属于作业的任务可能会遇到两种类型的延迟：由于共享资源争用而导致的排队延迟，以及由于在同一作业中协作的任务（map 和 reduce 阶段）之间的优先约束而导致的同步延迟。有两种主要技术可以估计并行应用程序的工作负载的性能，这些技术本身不考虑同步延迟。其中一种技术是平均值分析 （MVA），它仅考虑由于共享公共资源而导致的任务排队延迟。因此，它不能直接应用于具有优先约束的工作负载，例如属于同一 MapReduce 作业的 map 和 reduce 任务之间的同步。另一种经典解决方案是联合利用马尔可夫链来表示系统的可能状态，并对网络模型进行排队，以计算状态之间的转换速率。但是，此类方法不能很好地扩展，因为状态空间会随着任务数量的增加呈指数级增长，因此无法应用于具有许多任务的模型作业，而 MapReduce 作业就是这种情况。</span></p><h2 id='实验'><span>实验</span></h2><h3 id='实验设置'><span>实验设置</span></h3><p><span>集群中的每个节点具有相同的技术特征：</span></p><ul><li><p><span>2 个 Intel Xeon E5-2630L v2 @ 2.40 GHz</span></p></li><li><p><span>128 GB 内存 RAM</span></p></li><li><p><span>1 个硬盘 1 TB SATA-3</span></p></li><li><p><span>4 网络 Intel 千兆以太网</span></p></li></ul><p><span>我们进行了一组实验，分析了根据以下参数使用三种不同方法估计的工作负载响应时间：</span></p><ul><li><p><span>节点数目：4、6、8；</span></p></li><li><p><span>输入数据大小：1GB、5GB；</span></p></li><li><p><span>集群中并发执行的作业数：1、2、3、4。</span></p></li></ul><p><span>对于每个实验，我们分析了固定三个参数中的两个的任务响应时间。每个实验重复 5 次，并在图表中绘制响应时间的中位数。</span></p><h3 id='实验结果'><span>实验结果</span></h3><p><span>所有实验都针对 2 种类型的工作完成：（a）字数统计和（b）排序。我们描述了响应时间值，同时考虑了三种估计作业响应时间的方法。首先，我们根据集群中节点数量的增加和固定的工作负载来评估性能模型的准确性，即对于每个实验，我们固定并发作业的数量和输入数据的大小（参见图 13 和图 14）。</span></p><p><img src=".\imgs\MapReduce Performance Model for Hadoop 2.x\Fig13.jpeg" referrerpolicy="no-referrer" alt="Fig13"></p><p><img src=".\imgs\MapReduce Performance Model for Hadoop 2.x\Fig14.jpeg" referrerpolicy="no-referrer" alt="Fig14"></p><p><span>我们可以注意到，基于 Fork/join 的方法和基于任务响应时间正态分布的方法提供了更准确的作业响应时间估计，误差在 11% 到 14.5% 之间，而基于 Tripathi 的方法显示误差在 18% 到 22% 之间。对于 5GB 的输入大小，我们得到的误差值较大：分别为 14.5% 和 22%。我们观察到，算法的准确性取决于 map 任务的数量，而不是直接取决于输入数据的大小。因此，观察到的估计误差差异与优先树的复杂性（最大深度）有关，优先级树的复杂度随着映射任务数量的增加而增加。为了证明这个假设，我们增加了 map 任务的数量而不增加输入数据大小。因此，我们将 map 任务的默认块大小从 128MB 减少到 64MB 并重复实验。图 13（f）和图 14（f）分别显示了输入数据大小等于 5GB 和作业数等于 1 的字数统计和排序的这些结果。</span></p><p><span>正如这些结果所表明的，实验证实了我们的假设，因为我们获得了最大的误差值：Fork/join、Normal Dist 和基于 Tripathi 的方法分别为 15%、17% 和 23%。虽然精度不直接取决于输入大小，但应根据输入数据的大小和聚类特征合理选择块大小。为了减小优先树的最大深度，从而减少误差，我们平衡构建的优先树。</span></p><p><span>在我们的模型中，Fork/join 方法和基于任务持续时间正态分布的方法比 Hadoop 1 的原始模型提高了准确性，我们的解决方案基于该模型。对于集群中的一个作业，我们获得了有竞争力的错误率结果。</span></p><p><span>总之，我们可以注意到，基于 Fork/join 的方法和基于任务持续时间正态分布的方法比基于 Tripathi 的方法提供了更准确的结果，但对于这三种方法，我们高估了执行时间。</span></p></div></div>
+
+<script>(function(){function e(e,n,i){document.addEventListener(e,function(e){if(!e.defaultPrevented)for(var t=e.target;t&&t!=this;t=t.parentNode)if(t.matches(n)){!1===i.call(t,e)&&(e.preventDefault(),e.stopPropagation());break}},!1)}var t=document.body.parentElement,i=[],r=null,o=document.body.classList.contains("typora-export-collapse-outline");function a(){return t.scrollTop}e("click",".outline-expander",function(e){var t=this.closest(".outline-item-wrapper").classList;return t.contains("outline-item-open")?t.remove("outline-item-open"):t.add("outline-item-open"),u(),!1}),e("click",".outline-item",function(e){var t=this.querySelector(".outline-label");location.hash="#"+t.getAttribute("href"),o&&((t=this.closest(".outline-item-wrapper").classList).contains("outline-item-open")||t.add("outline-item-open"),d(),t.add("outline-item-active"))});function s(){var e=a();r=null;for(var t=0;t<i.length&&i[t][1]-e<60;t++)r=i[t]}function n(){c=setTimeout(function(){var n;i=[],n=a(),document.querySelector("#write").querySelectorAll("h1, h2, h3, h4, h5, h6").forEach(e=>{var t=e.getAttribute("id");i.push([t,n+e.getBoundingClientRect().y])}),s(),u()},300)}var l,c,d=function(){document.querySelectorAll(".outline-item-active").forEach(e=>e.classList.remove("outline-item-active")),document.querySelectorAll(".outline-item-single.outline-item-open").forEach(e=>e.classList.remove("outline-item-open"))},u=function(){if(r&&(d(),t=document.querySelector('.outline-label[href="#'+(CSS.escape?CSS.escape(r[0]):r[0])+'"]')))if(o){var e=t.closest(".outline-item-open>ul>.outline-item-wrapper");if(e)e.classList.add("outline-item-active");else{for(var t,n=(t=t.closest(".outline-item-wrapper")).parentElement.closest(".outline-item-wrapper");n;)n=(t=n).parentElement.closest(".outline-item-wrapper");t.classList.add("outline-item-active")}}else t.closest(".outline-item-wrapper").classList.add("outline-item-active")};window.addEventListener("scroll",function(e){l&&clearTimeout(l),l=setTimeout(function(){s(),u()},300)});window.addEventListener("resize",function(e){c&&clearTimeout(c),n()}),n()})();</script></body>
+</html>
