@@ -168,8 +168,10 @@
         
             
         
-        <div class=".article-gallery"><h1 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h1><p>我是李政，一名软件工程大三学生，现就读于东南大学。</p>
-<h1 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h1><p>我创建这个博客有两个初衷：</p>
+        <div class=".article-gallery"><h1 id="关于我"><a class="markdownIt-Anchor" href="#关于我"></a> 关于我</h1>
+<p>我是李政，一名软件工程大三学生，现就读于东南大学。</p>
+<h1 id="关于博客"><a class="markdownIt-Anchor" href="#关于博客"></a> 关于博客</h1>
+<p>我创建这个博客有两个初衷：</p>
 <p>首先，这个博客是我日常学习中记录为文档形式的思考内容的备案，我将其汇聚到这里，方便我在未来能够方便地回顾和查找。</p>
 <p>其次，我希望我对于某个问题的认识和视角可以为你提供帮助，因此我将内容公开以促进交流，这也是博客的重要精神之一。</p>
 <p>这个博客目前涵盖的内容：</p>
@@ -332,5 +334,21 @@
                     </svg>
                 </div>
             
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
 </html>

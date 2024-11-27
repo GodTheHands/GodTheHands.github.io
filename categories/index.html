@@ -168,7 +168,7 @@
       
         <li class="">
             <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB">论文阅读</a>
-            <span><i>3</i></span>
+            <span><i>4</i></span>
         </li>
     
     
@@ -310,5 +310,21 @@
                     </svg>
                 </div>
             
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
 </html>
